@@ -5,7 +5,7 @@ and coded it in a way that I find is more aestetically apeasing rather than usin
 */
 
 //list of quotes
-quotes = [
+const quotes = [
   q1 = {
     quote: 'The greatest glory in living lies not in never falling, but in rising every time we fall',
     source: 'Nelson Mandela'
@@ -49,25 +49,25 @@ function getRandomQuote() {
 function printQuote() {
   // get the quote
   var qte = getRandomQuote();
-  var htmlstr = '';
+  var html_template = '';
 
   // Concat the HTMl using the method as requested in the specs instead of template strings. 
 
-  htmlstr += '<p class="quote">' + qte.quote + '</p>';
-  htmlstr += '<p class="source">' + qte.source + '</p>';
-  // if there is a citation add that too
+  html_template +='<p class="quote">' + qte.quote + '</p><p class="source">' + qte.source
   if (qte.citation !== undefined) {
-    htmlstr += '<p class="citation">' + qte.citation + '</p>';
+    html_template += '<span class="citation">' + qte.citation + '</span>'
   }
   if (qte.year !== undefined) {
-    htmlstr += '<p class="year">' + qte.year + '</p>';
-
+    html_template += '<span class="year">' + qte.year + '</span>';
   }
-  // set the html of the quote box to the htmlstr
-  document.getElementById('quote-box').innerHTML = htmlstr;
+  // affix the closing tag
+  html_template += '</p>';
 
+  // set the html of the quote box to the htmltemplate
+  document.getElementById('quote-box').innerHTML = html_template;
 }
 
+// add event listener
 document.getElementById('loadQuote').addEventListener("click", printQuote, false);
 
 // call the print quote function once so there is a quote when the user loads the page
